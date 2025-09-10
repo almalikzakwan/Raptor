@@ -1,215 +1,249 @@
 # 🦅 Raptor Framework
 
-A lightweight, educational Python web framework built from scratch with SSL support and production deployment capabilities.
+A lightweight, educational web framework built from scratch in Python. Perfect for learning web development fundamentals and understanding how modern web frameworks work under the hood.
 
-## 🚀 What is Raptor Framework?
+## ✨ Features
 
-Raptor is a custom Python web framework designed for educational purposes and real-world applications. Built entirely from scratch without heavy dependencies, it exposes the core concepts that power modern web frameworks, making it perfect for:
+- **Pure Python Implementation**: Built from scratch without heavy dependencies
+- **Educational Focus**: Exposes core web development concepts
+- **Lightweight**: Minimal overhead, maximum learning
+- **Production Ready**: Includes systemd service configuration
+- **Modern Design**: Beautiful UI with responsive design
+- **JSON API Support**: Built-in JSON response handling
+- **Threading Support**: Concurrent request handling
+- **SSL Ready**: Compatible with nginx reverse proxy
 
-- **Learning web development fundamentals** - Understand how web frameworks work under the hood
-- **Educational projects** - Teach HTTP protocols, routing, and web server concepts
-- **Rapid prototyping** - Quick development of web applications and APIs
-- **Production deployments** - SSL-ready with nginx reverse proxy support
+## 🚀 What This Project Does
 
-### ✨ Key Features
+Raptor Framework demonstrates the fundamental concepts behind modern web frameworks by implementing:
 
-- 🔧 **Built from scratch** - No Flask, Django, or FastAPI dependencies
-- 🌐 **HTTP/HTTPS support** - SSL/TLS encryption with Let's Encrypt integration
-- 🔀 **Flexible routing** - Decorator-based route definitions with parameter support
-- 📡 **RESTful APIs** - JSON response handling and API endpoints
-- 🎨 **Custom templates** - HTML templating system for dynamic content
-- 🔒 **Production ready** - Systemd service, nginx reverse proxy, security headers
-- 🐧 **Ubuntu deployment** - Complete deployment automation scripts
-- 📊 **Lightweight** - Minimal resource footprint and fast response times
+- **HTTP Request/Response Handling**: Raw socket programming for HTTP communication
+- **Routing System**: Decorator-based route registration
+- **Request Processing**: Multi-threaded request handling
+- **Response Generation**: HTML and JSON response builders
+- **Static Content Serving**: Basic web page rendering
+- **RESTful API Endpoints**: JSON API implementation
 
-## 🏃‍♂️ Quick Start
+The framework serves a beautiful "Hello World" application with multiple routes showcasing different response types and modern web design patterns.
+
+## 📁 Project Structure
+
+```
+raptor-framework/
+├── raptor/                 # Framework core package
+│   ├── __init__.py        # Package initialization and exports
+│   ├── core/              # Core framework components
+│   │   ├── __init__.py   # Core package initialization
+│   │   └── app.py        # Main Raptor class with HTTP handling
+│   └── http/              # HTTP utilities (future expansion)
+│       └── __init__.py   # HTTP package initialization
+├── app.py                 # Main application entry point
+├── .gitignore            # Git ignore configuration
+└── README.md             # Project documentation
+```
+
+### Core Components
+
+- **`raptor/core/app.py`**: Contains the main `Raptor` class with HTTP server implementation, routing system, and response handlers
+- **`app.py`**: Demo application showcasing framework capabilities with multiple routes
+- **`raptor/__init__.py`**: Package exports and version information
+
+## 🛠️ Installation & Setup
 
 ### Prerequisites
-- Python 3.8+
-- Ubuntu 20.04+ (for production deployment)
-- Domain name (optional, for SSL)
 
-### Running the Application
+- Python 3.9 or higher
+- Ubuntu/Linux system (for systemd setup)
+- nginx (optional, for production deployment)
 
-1. **Clone and setup:**
+### Manual Installation
+
+1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
-   cd Raptor
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
+   git clone https://github.com/yourusername/raptor-framework.git
+   cd raptor-framework
    ```
 
-2. **Start the development server:**
+2. **Run the application:**
    ```bash
-   python app.py
+   python3 app.py
    ```
 
-3. **Access your application:**
-   - Development: `http://localhost:8000`
-   - With domain: `https://raptor.test` (after nginx setup)
+3. **Access the application:**
+   - Open your browser and visit `http://localhost:8000`
+   - Try different routes:
+     - `/` - Home page with beautiful UI
+     - `/api/status` - JSON API endpoint
+     - `/about` - About page
 
-### Available Endpoints
+## 🔧 Production Deployment with systemd
 
-- **`/`** - Main page with "Hello, World!" and framework information
-- **`/api/status`** - JSON API endpoint returning system status
-- **`/about`** - Information about the Raptor Framework
+### 1. Create systemd Service File
 
-## 🏗️ Project Structure
+Create a systemd service file to manage the Raptor application:
 
-```
-Raptor/
-├── 📄 app.py                      # Main application entry point
-├── 📄 requirements.txt            # Python dependencies
-├── 📄 README.md                   # This file
-├── 📁 raptor/                     # Core framework directory
-│   ├── 📄 __init__.py
-│   ├── 📁 core/                   # Framework core components
-│   │   ├── 📄 __init__.py
-│   │   └── 📄 app.py              # Main Raptor class and HTTP server
-│   ├── 📁 http/                   # HTTP handling
-│   │   ├── 📄 __init__.py
-│   │   ├── 📄 request.py          # HTTP request parsing
-│   │   └── 📄 response.py         # HTTP response generation
-│   ├── 📁 routing/                # URL routing system
-│   │   ├── 📄 __init__.py
-│   │   └── 📄 router.py           # Route matching and parameters
-│   └── 📁 utils/                  # Utility functions
-│       ├── 📄 __init__.py
-│       └── 📄 helpers.py          # Helper functions and utilities
-├── 📁 static/                     # Static files (CSS, JS, images)
-│   ├── 📁 css/
-│   │   └── 📄 main.css
-│   ├── 📁 js/
-│   │   └── 📄 main.js
-│   └── 📁 images/
-├── 📁 templates/                  # HTML templates
-│   ├── 📄 base.html
-│   ├── 📄 home.html
-│   └── 📄 about.html
-├── 📁 config/                     # Configuration files
-│   ├── 📄 __init__.py
-│   ├── 📄 settings.py             # Application settings
-│   └── 📁 nginx/
-│       └── 📄 raptor.test.conf    # Nginx configuration template
-├── 📁 scripts/                    # Deployment and setup scripts
-│   ├── 📄 setup.sh                # Initial setup script
-│   ├── 📄 deploy.sh               # Production deployment
-│   └── 📄 ssl_setup.sh            # SSL certificate setup
-├── 📁 tests/                      # Test suite
-│   ├── 📄 __init__.py
-│   ├── 📄 test_app.py             # Application tests
-│   └── 📄 test_framework.py       # Framework core tests
-├── 📁 docs/                       # Documentation
-│   ├── 📄 installation.md
-│   ├── 📄 deployment.md
-│   └── 📄 api.md
-└── 📁 logs/                       # Application logs
-    └── 📄 .gitkeep
-```
-
-### 🧩 Framework Architecture
-
-#### Core Components
-
-- **`raptor/core/app.py`** - The main `Raptor` class that handles HTTP requests, routing, and responses
-- **`raptor/http/`** - HTTP request/response handling with support for headers, parameters, and JSON
-- **`raptor/routing/`** - URL routing system with decorator support and parameter extraction
-- **`raptor/utils/`** - Utility functions for configuration, logging, and helper methods
-
-#### Application Layer
-
-- **`app.py`** - Your application code using the Raptor framework
-- **`config/settings.py`** - Centralized configuration management
-- **`static/`** - CSS, JavaScript, and image assets
-- **`templates/`** - HTML templates for dynamic content generation
-
-#### Deployment & Operations
-
-- **`scripts/`** - Automation scripts for setup, deployment, and SSL configuration
-- **`config/nginx/`** - Nginx reverse proxy configuration
-- **`tests/`** - Comprehensive test suite for both framework and application
-- **`docs/`** - Complete documentation for installation, deployment, and API usage
-
-## 🎯 Use Cases
-
-### Educational
-- **Web Development Courses** - Teach students how web frameworks work internally
-- **Computer Science Projects** - Understand HTTP protocols, socket programming, and web servers
-- **Python Advanced Topics** - Learn about decorators, context managers, and object-oriented design
-
-### Development
-- **Rapid Prototyping** - Quickly build and test web application ideas
-- **Microservices** - Create lightweight API services
-- **IoT Projects** - Simple web interfaces for embedded systems
-- **Learning Tools** - Build educational web applications and dashboards
-
-### Production
-- **Small to Medium Applications** - Deploy production-ready web applications
-- **API Services** - RESTful APIs with JSON responses
-- **Static Site Generation** - Dynamic content with static file serving
-- **Legacy System Integration** - Bridge old systems with modern web interfaces
-
-## 🛠️ Development
-
-### Running Tests
 ```bash
-# Run all tests
-python -m pytest tests/
-
-# Run with coverage
-python -m pytest tests/ --cov=raptor --cov-report=html
+sudo nano /etc/systemd/system/raptor.service
 ```
 
-### Code Structure
-The framework follows clean architecture principles:
-- **Separation of concerns** - Clear boundaries between HTTP, routing, and application logic
-- **Modular design** - Each component can be used independently
-- **Extensible** - Easy to add new features and middleware
-- **Testable** - Comprehensive test coverage with mocking support
+Add the following configuration:
 
-## 🔧 Configuration
+```ini
+[Unit]
+Description=Raptor Framework Web Application
+After=network.target
 
-The framework uses environment-based configuration:
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/path/to/raptor-framework
+Environment=PATH=/path/to/raptor-framework/venv/bin
+ExecStart=/usr/bin/python3 /path/to/raptor-framework/app.py
+Restart=always
+RestartSec=3
+
+# Security settings
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/path/to/raptor-framework
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### 2. Enable and Start the Service
+
+```bash
+# Reload systemd configuration
+sudo systemctl daemon-reload
+
+# Enable the service to start on boot
+sudo systemctl enable raptor.service
+
+# Start the service
+sudo systemctl start raptor.service
+
+# Check service status
+sudo systemctl status raptor.service
+```
+
+### 3. Service Management Commands
+
+```bash
+# Start the service
+sudo systemctl start raptor
+
+# Stop the service
+sudo systemctl stop raptor
+
+# Restart the service
+sudo systemctl restart raptor
+
+# View logs
+sudo journalctl -u raptor.service -f
+
+# Check service status
+sudo systemctl status raptor
+```
+
+### 4. nginx Configuration (Optional)
+
+For production deployment with SSL, configure nginx as a reverse proxy:
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+    
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+## 🔍 API Endpoints
+
+- **GET `/`** - Home page with beautiful UI
+- **GET `/about`** - About page with framework information
+- **GET `/api/status`** - JSON API endpoint returning service status
+
+### Example API Response
+
+```json
+{
+    "status": "success",
+    "message": "Raptor Framework API is running",
+    "version": "1.0.0",
+    "framework": "Raptor",
+    "python_version": "3.9+",
+    "ssl_enabled": true
+}
+```
+
+## 🧑‍💻 Development
+
+### Adding New Routes
 
 ```python
-# config/settings.py
-APP_ENV = 'development'  # development, production
-DEBUG = True
-HOST = '127.0.0.1'
-PORT = 8000
-DOMAIN = 'raptor.test'
-SSL_ENABLED = False
+from raptor import Raptor
+
+app = Raptor()
+
+@app.route('/new-endpoint', methods=['GET', 'POST'])
+def new_handler(request):
+    return app.json({"message": "Hello from new endpoint!"})
 ```
 
-## 📈 Performance
+### Response Types
 
-Raptor Framework is designed for:
-- **Low memory footprint** - Minimal resource usage
-- **Fast startup** - Quick application initialization
-- **Efficient routing** - O(1) route matching for most cases
-- **Concurrent handling** - Multi-threaded request processing
+```python
+# HTML Response
+return app.response("<h1>HTML Content</h1>")
+
+# JSON Response
+return app.json({"key": "value"})
+
+# Custom Status Code
+return app.response("Not Found", status=404)
+```
+
+## 📚 Learning Objectives
+
+This framework helps you understand:
+
+- Socket programming in Python
+- HTTP protocol fundamentals
+- Request/response cycle
+- Threading in web applications
+- Routing mechanisms
+- Modern web framework architecture
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Contributions are welcome! This is an educational project, so please:
 
-## 📜 License
+1. Keep code simple and well-commented
+2. Focus on educational value
+3. Maintain the lightweight nature
+4. Add tests for new features
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📄 License
 
-## 🙏 Acknowledgments
+This project is open source and available under the [MIT License](LICENSE).
 
-- Built with educational goals in mind
-- Inspired by modern web frameworks like Flask and FastAPI
-- Designed for learning and real-world application
+## 🎯 Use Cases
+
+- **Learning**: Perfect for understanding web framework internals
+- **Prototyping**: Quick web application prototypes
+- **Education**: Teaching web development concepts
+- **Research**: Experimenting with web technologies
 
 ---
 
-**🦅 Raptor Framework** - *Fast, Educational, Production-Ready*
-
-Made with ❤️ for developers who want to understand how web frameworks work under the hood.
+**Built with ❤️ for learning and education**
