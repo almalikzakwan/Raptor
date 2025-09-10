@@ -4,6 +4,7 @@ from urllib.parse import parse_qs, urlparse
 import json
 import importlib
 import os
+from typing import Dict  # Add this import
 from .router import Router, Route
 
 class Request:
