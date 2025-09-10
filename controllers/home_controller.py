@@ -34,43 +34,69 @@ class HomeController:
         try:
             about_data = self.page_model.get_about_data()
             
-            return Response(f"""
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>About - Raptor Framework</title>
-                <style>
-                    body {{ font-family: Arial, sans-serif; padding: 40px; 
-                           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                           color: white; min-height: 100vh; }}
-                    .container {{ max-width: 800px; margin: 0 auto; 
-                                background: rgba(255,255,255,0.1); padding: 40px; 
-                                border-radius: 15px; backdrop-filter: blur(10px); }}
-                    .feature {{ margin: 15px 0; padding: 10px; 
-                              background: rgba(255,255,255,0.1); border-radius: 5px; }}
-                    a {{ color: white; }}
-                </style>
-            </head>
-            <body>
-                <div class="container">
-                    <h1>🦅 About Raptor Framework</h1>
-                    <p>{about_data['description'][0]}</p>
-                    
-                    <h3>🛣️ Laravel-style Routing Features:</h3>
-                    <div class="feature">✅ Separate route files (web.py, api.py)</div>
-                    <div class="feature">✅ Named routes: Route::get('/users', 'UserController@index')->name('users.index')</div>
-                    <div class="feature">✅ Route parameters: /users/{{id}}</div>
-                    <div class="feature">✅ Route groups with prefix and middleware</div>
-                    <div class="feature">✅ URL generation from route names</div>
-                    <div class="feature">✅ RESTful resource routing</div>
-                    
-                    <p><a href="/">← Back to Home</a> | <a href="/api/status">API Status</a></p>
-                </div>
-            </body>
-            </html>
-            """)
+            # Get all available routes from web routes
+            routes_html = ""
+            total_routes = 0
+            
+            try:
+                from routes.web import all_web_routes
+                
+                routes_html = self._generate_routes_table(all_web_routes)
+                total_routes = len(all_web_routes)
+                
+            except ImportError:
+                routes_html = "<tr><td colspan='4'>No routes found</td></tr>"
+                total_routes = 0
+            
+            # Add routes info to template data
+            about_data['routes_table'] = routes_html
+            about_data['total_routes'] = total_routes
+            
+            from raptor import Raptor
+            app = Raptor()
+            content = app.render_template('about.html', about_data)
+            
+            return Response(content)
         except Exception as e:
             return Response(f"Error loading about page: {str(e)}", 500)
+    
+    def _generate_routes_table(self, routes):
+        """Generate HTML table rows for routes"""
+        html = ""
+        
+        for route in routes:
+            method = route.method
+            path = route.path
+            name = route.route_name or 'unnamed'
+            action = route.action
+            
+            # Get method badge class
+            method_class = self._get_method_class(method)
+            
+            html += f"""
+                <tr>
+                    <td><span class="method-badge {method_class}">{method}</span></td>
+                    <td><code class="route-path">{path}</code></td>
+                    <td><span class="route-name">{name}</span></td>
+                    <td>{action}</td>
+                </tr>
+            """
+        
+        return html
+    
+    def _get_method_class(self, method):
+        """Get CSS class for HTTP method"""
+        method_lower = method.lower()
+        if method_lower == 'get':
+            return 'method-get'
+        elif method_lower == 'post':
+            return 'method-post'
+        elif method_lower == 'put':
+            return 'method-put'
+        elif method_lower == 'delete':
+            return 'method-delete'
+        else:
+            return 'method-get'
     
     def contact(self, request):
         """Contact page - GET /contact"""
