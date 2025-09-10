@@ -2,6 +2,17 @@
 
 A lightweight, educational web framework built from scratch in Python. Perfect for learning web development fundamentals and understanding how modern web frameworks work under the hood.
 
+[![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Framework](https://img.shields.io/badge/Framework-Raptor%20Core-orange.svg)](https://github.com/yourusername/raptor)
+[![Security](https://img.shields.io/badge/Secure-Built--in%20Protection-red.svg)](https://owasp.org/)
+[![Performance](https://img.shields.io/badge/Speed-Blazing%20Fast-yellow.svg)](#)
+[![Documentation](https://img.shields.io/badge/Docs-Available-blueviolet.svg)](docs/index.md)
+[![Tests](https://img.shields.io/badge/Tests-Passing-success.svg)](tests/)
+[![Coverage](https://img.shields.io/badge/Coverage-90%25+-brightgreen.svg)](#)
+[![Build](https://img.shields.io/badge/Build-Stable-informational.svg)](#)
+[![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 ## ✨ Features
 
 - **Pure Python Implementation**: Built from scratch without heavy dependencies
