@@ -4,7 +4,7 @@
     "private": true,
 
     "scripts": {
-        "dev": "flask --app main run --debug"
+        "start-dev": "flask --app main run --debug"
     },
 
     "dependencies": {}
