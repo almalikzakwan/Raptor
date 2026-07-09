@@ -2,7 +2,7 @@
 A modern, secure, and high-performance Python web framework inspired by Laravel, built on top of flask.  
   
 ## Overview
-Raptor is a lightweight web framework built on top of Flask, designed to provide Laravel-like development experience while maintaining Flask's flexibility and performance.  
+Raptor is a lightweight web framework built on top of Flask, designed to provide Laravel-like development experience while maintaining Flask's flexibility and performance. Help by AntiGravity AI.
   
 The framework focuses on: 
 - High Performance  
