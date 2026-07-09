@@ -16,12 +16,14 @@ The framework focuses on:
 Flask is simple and flexible.  
   
 ## Features  
-- MVC-inspired architecture  
-- Auto route loading  
-- COntrollers  
-- Middleware Support
-
-
+- [x] Laravel-Inspired Routing Facade.  
+- [x] Context-Based Route Middleware & Grouping.  
+- [x] Centralized Middleware Kernel.  
+- [x] MVC Architecture Structure.  
+- [x] Active Record ORM & MySQL Database Integration. 
+- [x] Environmental Configuration.  
+- [x] Migration & Seeding System.  
+  
 ## Installation  
 Clone the repository.  
 ```  
