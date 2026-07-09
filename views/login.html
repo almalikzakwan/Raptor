@@ -1,0 +1,53 @@
+{% extends "layouts/app.html" %}
+
+{% block title %} Raptor | Login {% endblock %}
+
+{% block content %}
+<section style="min-height: 80vh; display: flex; align-items: center; justify-content: center; background: #111; padding: 120px 20px;">
+    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 40px; width: 100%; max-width: 450px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); color: #fff; font-family: 'Montserrat', sans-serif;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: #39b54a; margin: 0; font-size: 28px; font-weight: 700; letter-spacing: 1px;">Raptor Login</h2>
+            <p style="color: #888; font-size: 14px; margin-top: 5px;">Please log in to access the dashboard</p>
+        </div>
+
+        <form action="{{ url_for('login_action') }}" method="POST" style="margin: 0;">
+            <input type="hidden" name="next" value="{{ request.args.get('next') or '' }}">
+            
+            <div style="margin-bottom: 20px;">
+                <label for="username" style="display: block; font-size: 12px; text-transform: uppercase; color: #aaa; margin-bottom: 8px; font-weight: 600; letter-spacing: 1px;">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter admin" required 
+                       style="width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; color: #fff; font-size: 15px; outline: none; transition: border-color 0.3s ease;">
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <label for="password" style="display: block; font-size: 12px; text-transform: uppercase; color: #aaa; margin-bottom: 8px; font-weight: 600; letter-spacing: 1px;">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password123" required
+                       style="width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; color: #fff; font-size: 15px; outline: none; transition: border-color 0.3s ease;">
+            </div>
+
+            <button type="submit" style="width: 100%; padding: 14px; background: #39b54a; border: none; border-radius: 6px; color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px;">
+                Login
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 25px; color: #666; font-size: 13px;">
+            <p>Test Credentials: <strong style="color: #888;">admin</strong> / <strong style="color: #888;">password123</strong></p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Added input focus effect
+    const inputs = document.querySelectorAll('input[type="text"], input[type="password"]');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.style.borderColor = '#39b54a';
+            input.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+        });
+        input.addEventListener('blur', () => {
+            input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            input.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+        });
+    });
+</script>
+{% endblock %}

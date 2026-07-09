@@ -23,6 +23,31 @@
 </head>
 <body id="top">
     {% include "partials/nav.html" %}
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages-container" style="position: fixed; top: 100px; right: 20px; z-index: 9999; max-width: 350px; font-family: sans-serif;">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" style="padding: 15px; margin-bottom: 10px; border-radius: 4px; color: #fff; background-color: {% if category == 'success' %}#39b54a{% elif category == 'error' or category == 'danger' %}#ff0033{% elif category == 'warning' %}#e2b13c{% else %}#00bcd4{% endif %}; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: space-between;">
+              <span>{{ message }}</span>
+              <span style="cursor: pointer; margin-left: 10px; font-size: 18px;" onclick="this.parentElement.remove();">&times;</span>
+            </div>
+          {% endfor %}
+        </div>
+        <script>
+          setTimeout(function() {
+            var containers = document.querySelectorAll('.flash-messages-container');
+            containers.forEach(function(el) {
+              el.style.transition = 'opacity 0.8s ease';
+              el.style.opacity = '0';
+              setTimeout(function() { el.remove(); }, 800);
+            });
+          }, 5000);
+        </script>
+      {% endif %}
+    {% endwith %}
+
     <div class="container">
         {% block content %}
         {% endblock %}

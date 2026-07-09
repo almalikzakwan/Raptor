@@ -14,12 +14,18 @@
             <h3>Navigation</h3>
             
             <ul class="header-nav__list">
-                <li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
-                <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
-                <li><a class="smoothscroll"  href="#services" title="services">Services</a></li>
-                <li><a class="smoothscroll"  href="#works" title="works">Works</a></li>
-                <li><a class="smoothscroll"  href="#clients" title="clients">Clients</a></li>
-                <li><a class="smoothscroll"  href="#contact" title="contact">Contact</a></li>
+                <li class="current"><a href="{{ url_for('home') }}" title="home">Home</a></li>
+                <li><a href="{{ url_for('home') }}#about" title="about">About</a></li>
+                <li><a href="{{ url_for('home') }}#services" title="services">Services</a></li>
+                <li><a href="{{ url_for('home') }}#works" title="works">Works</a></li>
+                <li><a href="{{ url_for('home') }}#clients" title="clients">Clients</a></li>
+                <li><a href="{{ url_for('home') }}#contact" title="contact">Contact</a></li>
+                {% if session.get('user') %}
+                    <li><a href="{{ url_for('dashboard') }}" title="dashboard">Dashboard</a></li>
+                    <li><a href="{{ url_for('logout') }}" title="logout">Logout ({{ session['user']['name'] }})</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" title="login">Login</a></li>
+                {% endif %}
             </ul>
 
             <p>Perspiciatis hic praesentium nesciunt. Et neque a dolorum <a href='#0'>voluptatem</a> porro iusto sequi veritatis libero enim. Iusto id suscipit veritatis neque reprehenderit.</p>
