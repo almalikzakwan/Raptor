@@ -14,16 +14,17 @@
             <h3>Navigation</h3>
             
             <ul class="header-nav__list">
-                <li class="current"><a href="{{ url_for('home') }}" title="home">Home</a></li>
-                <li><a href="{{ url_for('home') }}#about" title="about">About</a></li>
-                <li><a href="{{ url_for('home') }}#services" title="services">Services</a></li>
-                <li><a href="{{ url_for('home') }}#works" title="works">Works</a></li>
-                <li><a href="{{ url_for('home') }}#clients" title="clients">Clients</a></li>
-                <li><a href="{{ url_for('home') }}#contact" title="contact">Contact</a></li>
                 {% if session.get('user') %}
                     <li><a href="{{ url_for('dashboard') }}" title="dashboard">Dashboard</a></li>
+                    <li><a href="{{ url_for('profile') }}" title="logout">Profile</a></li>
                     <li><a href="{{ url_for('logout') }}" title="logout">Logout ({{ session['user']['name'] }})</a></li>
                 {% else %}
+                    <li class="current"><a href="{{ url_for('home') }}" title="home">Home</a></li>
+                    <li><a href="{{ url_for('home') }}#about" title="about">About</a></li>
+                    <li><a href="{{ url_for('home') }}#services" title="services">Services</a></li>
+                    <li><a href="{{ url_for('home') }}#works" title="works">Works</a></li>
+                    <li><a href="{{ url_for('home') }}#clients" title="clients">Clients</a></li>
+                    <li><a href="{{ url_for('home') }}#contact" title="contact">Contact</a></li>
                     <li><a href="{{ url_for('login') }}" title="login">Login</a></li>
                 {% endif %}
             </ul>
