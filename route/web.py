@@ -7,6 +7,7 @@ from app.database import db
 from app.controllers.home_controller import HomeController
 from app.controllers.auth_controller import AuthController
 from app.controllers.dashboard_controller import DashboardController
+from app.controllers.profile_controller import ProfileController
 
 app = Flask(__name__, template_folder='../views', static_folder='../static')
 
@@ -37,3 +38,4 @@ Route.get('/logout', [AuthController, 'logout'], endpoint='logout')
 
 # Protected Routes (Grouped or route-level middleware)
 Route.middleware('auth').get('/dashboard', [DashboardController, 'index'], endpoint='dashboard')
+Route.middleware('auth').get('/profile', [ProfileController, 'index'], endpoint='profile')
